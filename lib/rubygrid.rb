@@ -2,6 +2,24 @@ require 'rubygrid/version'
 require 'rubygrid/gridbase'
 
 module RubyGrid
+
+  # Some constant values. These are set as strings instead of
+  # integer values to prevent clashes of data.
+  OUTSIDE   = "OUTSIDE".freeze
+  NOT_VALID = "NOT_VALID".freeze
+  NIL_VALUE = "NIL_VALUE".freeze
+
+  # Traversal Vector Constants
+  TOP_LEFT = 1
+  TOP = 2
+  TOP_RIGHT = 3
+  LEFT = 4
+  CENTER = 5
+  RIGHT = 6
+  BOTTOM_LEFT = 7
+  BOTTOM = 8
+  BOTTOM_RIGHT = 9
+
   # Wrapper for GridBase#new
   def RubyGrid.create(x, y, value)
     return GridBase.new(x, y, value)

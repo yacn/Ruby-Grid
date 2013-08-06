@@ -272,7 +272,7 @@ module RubyGrid
         end
       end
 
-      return block_given ? nil : row
+      return block_given? ? nil : row
     end
 
     # This method returns an Array of all values in a given
