@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 
+# Runs tests when this file is executed
 if __FILE__ == $0
   $LOAD_PATH.unshift('lib', 'spec')
   Dir.glob('./spec/*_spec.rb') { |f| require f }

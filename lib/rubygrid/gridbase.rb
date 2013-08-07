@@ -49,17 +49,15 @@ module RubyGrid
     def get_cells(cells) # :yields: cell_data
       data = []
 
-      return data unless cells.is_a?(Array)
+      return data unless cells.respond_to?(:collect)
 
       cells.each do |x,y|
         if is_valid?(x,y)
-          
           if block_given?
             yield @grid[x][y]
           else
-            data.push(@grid[x][y])
+            data << @grid[x][y]
           end
-
         end
       end
       
