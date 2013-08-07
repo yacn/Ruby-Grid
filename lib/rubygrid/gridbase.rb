@@ -31,15 +31,10 @@ module RubyGrid
     # This checks to see if a given x,y pair are within 
     # the boundaries of the grid.
     def is_valid?(x, y)
-      if (not x.is_a?(Fixnum) or x.nil?) or (not y.is_a?(Fixnum) or y.nil?)
+      unless (is_number?(x) and is_number?(y))
         return false
       end
-
-      if (x >= 0 and x < @size_x) and (y >= 0 and y < @size_y)
-        return true
-      else
-        return false
-      end
+      return ((x >= 0 and x < @size_x) and (y >= 0 and y < @size_y))
     end
 
     # Get the data in a given x,y cell.
@@ -333,6 +328,11 @@ module RubyGrid
       end
 
       return block_given? ? nil : data
+    end
+
+  private
+    def is_number?(n)
+      (n.respond_to?(:even?) and not n.nil?)
     end
 
   end
