@@ -9,8 +9,8 @@ module RubyGrid
       @grid = []
       
       # Default Grid size is 4x4
-      sizex = 4 unless sizex.is_a?(Fixnum) or sizex.nil?
-      sizey = 4 unless sizey.is_a?(Fixnum) or sizey.nil?
+      sizex = 4 unless is_number?(sizex)
+      sizey = 4 unless is_number?(sizey)
 
       @size_x = sizex
       @size_y = sizey
@@ -97,7 +97,7 @@ module RubyGrid
     # If the object to be populated is nil, it is replaced with
     # the default value.
     def populate(data)
-      return unless data.is_a?(Array)
+      return unless data.respond_to?(:collect)
 
       data.each do |x, y, obj|
         if is_valid?(x,y)
@@ -220,7 +220,7 @@ module RubyGrid
     # filled with the default value given when the grid was first
     # created.
     def resize(newx, newy)
-      if (not newx.is_a?(Fixnum) or newx.nil?) or (not newy.is_a?(Fixnum) or newy.nil?)
+      unless is_number?(newx) and is_number?(newy)
         return false
       end
 
@@ -255,7 +255,7 @@ module RubyGrid
     def get_row(x) # :yields: cell_data
       row = []
 
-      if x.is_a?(Fixnum) and (x >= 0 and x < @size_x)
+      if is_number?(x) and (x >= 0 and x < @size_x)
         row = @grid[x]
       end
 
@@ -275,7 +275,7 @@ module RubyGrid
     def get_column(y) # :yields: cell_data
       col = []
 
-      if y.is_a?(Fixnum) and (y >= 0 and y < @size_y)
+      if is_number?(y) and (y >= 0 and y < @size_y)
         @size_x.times do |x|
           if block_given?
             yield @grid[x][y]
