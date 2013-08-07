@@ -3,11 +3,11 @@ require 'minitest/autorun'
 require_relative './spec_helper'
 
 module RubyGrid
-  describe GridBase do
+  describe Grid do
 
     before :each do
-      @default_test_grid = GridBase.new
-      @test_grid = GridBase.new(4, 4, 'a')
+      @default_test_grid = Grid.new
+      @test_grid = Grid.new(4, 4, 'a')
       @test_grid.reset_all
     end
 
@@ -188,11 +188,11 @@ module RubyGrid
         @test_grid.resize(2,'a').must_equal false
       end
       it 'returns true after resizing the grid' do
-        new_grid = GridBase.new(5,5,'a')
+        new_grid = Grid.new(5,5,'a')
         new_grid.resize(4,4).must_equal true
       end
       it 'resizes the grid to be smaller' do
-        new_grid = GridBase.new(5,5,'a')
+        new_grid = Grid.new(5,5,'a')
         new_grid.get_grid.length.must_equal 5
         new_grid.resize(4,4)
         new_grid.get_grid.length.must_equal 4
@@ -200,7 +200,7 @@ module RubyGrid
       end
       it 'resizes the grid to be larger, filling in the default value for 
           new cells' do
-        new_grid = GridBase.new(3,3,'a')
+        new_grid = Grid.new(3,3,'a')
         new_grid.get_grid.length.must_equal 3
         new_grid.set_cell(0,0,'b')
         new_grid.set_cell(2,2,'b')
@@ -249,7 +249,7 @@ module RubyGrid
         end.must_equal nil
       end
       it 'returns an Array of the traversed cells' do
-        a = GridBase.new(5,5,'a')
+        a = Grid.new(5,5,'a')
         traversal = [[1,2,[['a','a','a','a','a'],['a','a','a','a','a']]],
                      [0,2,[['a','a','a','a','a'],['a','a','a','a','a']]]]
         a.traverse(2,2,TOP).must_equal traversal

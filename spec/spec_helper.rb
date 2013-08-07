@@ -8,7 +8,7 @@ end
 
 require_relative '../lib/rubygrid'
 module RubyGrid
-  class GridBase
+  class Grid
     def get_grid
       return @grid
     end

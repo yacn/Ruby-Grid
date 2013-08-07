@@ -1,6 +1,6 @@
 module RubyGrid
-  class GridBase
-    # GridBase constructor.
+  class Grid
+    # Grid constructor.
     # +sizex+ and +sizey+::
     #   These set the desired size of the grid, 4 by default.
     # +def_value+::

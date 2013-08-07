@@ -1,5 +1,5 @@
 require 'rubygrid/version'
-require 'rubygrid/gridbase'
+require 'rubygrid/grid'
 
 module RubyGrid
 
@@ -20,9 +20,9 @@ module RubyGrid
   BOTTOM = 8
   BOTTOM_RIGHT = 9
 
-  # Wrapper for GridBase#new
+  # Wrapper for Grid#new
   def RubyGrid.create(x, y, value)
-    return GridBase.new(x, y, value)
+    return Grid.new(x, y, value)
   end
 
   # Yields each of the vector constants in turn, from top-left
