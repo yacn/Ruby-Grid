@@ -1,6 +1,8 @@
 RubyGrid
 ========
 
+[![Build Status](https://travis-ci.org/yacn/Ruby-Grid.png)](https://travis-ci.org/yacn/Ruby-Grid)
+
 Description
 -----------
 
