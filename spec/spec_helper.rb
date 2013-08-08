@@ -1,14 +1,16 @@
-require 'simplecov'
-SimpleCov.start do
-  require 'simplecov-badge'
-  SimpleCov::Formatter::BadgeFormatter.generate_groups = true
-  SimpleCov::Formatter::BadgeFormatter.strength_foreground = true
-  SimpleCov::Formatter::BadgeFormatter.timestamp = true
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::BadgeFormatter,
-  ]
-end
+#require 'simplecov'
+#SimpleCov.start do
+#  require 'simplecov-badge'
+#  SimpleCov::Formatter::BadgeFormatter.generate_groups = true
+#  SimpleCov::Formatter::BadgeFormatter.strength_foreground = true
+#  SimpleCov::Formatter::BadgeFormatter.timestamp = true
+#  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+#    SimpleCov::Formatter::HTMLFormatter,
+#    SimpleCov::Formatter::BadgeFormatter,
+#  ]
+#end
+require 'coveralls'
+Coveralls.wear!
 
 require 'minitest/autorun'
 begin
