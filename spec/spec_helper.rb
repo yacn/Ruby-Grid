@@ -1,5 +1,5 @@
 require 'simplecov'
-Simplecov.start do
+SimpleCov.start do
   require 'simplecov-badge'
   SimpleCov::Formatter::BadgeFormatter.generate_groups = true
   SimpleCov::Formatter::BadgeFormatter.strength_foreground = true
