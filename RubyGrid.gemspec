@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = 'A simple gem for grids in Ruby'
   s.authors     = ['Randy Carnahan', 'yacn']
   s.email       = 'admin@yacn.pw'
-  s.files       = ['lib/rubygrid.rb', 'lib/rubygrid/version.rb', 'lib/rubygrid/gridbase.rb']
+  s.files       = ['lib/rubygrid.rb', 'lib/rubygrid/version.rb', 'lib/rubygrid/grid.rb']
   s.homepage    = 'https://github.com/yacn/Ruby-Grid'
   s.license     = 'MIT'
 end
