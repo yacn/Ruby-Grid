@@ -58,7 +58,6 @@ module RubyGrid
       it 'should return nil if a block is given' do
         cs = [[0,0],[0,1]]
         @test_grid.get_cells(cs) do |cell_data|
-          puts cell_data
         end.must_equal nil
       end
       it 'returns the data in the provided cells' do
@@ -122,7 +121,6 @@ module RubyGrid
     describe '#get_contents(no_default=false)' do
       it 'returns nil if a block is given' do
         @test_grid.get_contents do |x, y, cell_data|
-          puts "#{x}, #{y}: #{cell_data}"
         end.must_equal nil
       end
       it 'returns the entire grid\'s contents in a flat array' do
@@ -173,7 +171,6 @@ module RubyGrid
       end
       it 'returns nil if a block is given' do
         @test_grid.get_neighbors(3,2) do |x, y, cell_data|
-          puts "#{x}, #{y}: #{cell_data}"
         end.must_equal nil
       end
       it 'returns an 8-element Array of the cell\'s neighbors' do
@@ -226,7 +223,6 @@ module RubyGrid
     describe '#get_row(x)' do
       it 'returns nil if a block is given' do
         @test_grid.get_row(0) do |cell_data|
-          puts "#{cell_data}"
         end.must_equal nil
       end
       it 'returns an empty Array if x is not valid' do
@@ -241,7 +237,6 @@ module RubyGrid
     describe '#get_column(y)' do
       it 'returns nil if a block is given' do
         @test_grid.get_column(0) do |cell_data|
-          puts "#{cell_data}"
         end.must_equal nil
       end
       it 'returns an empty Array if y is not valid' do
@@ -256,7 +251,6 @@ module RubyGrid
     describe '#traverse(x, y, vector)' do
       it 'returns nil if a block is given' do
         @test_grid.traverse(2,2,TOP) do |x, y, cell_data|
-          puts "#{x}, #{y}: #{cell_data}"
         end.must_equal nil
       end
       it 'returns an Array of the traversed cells' do
