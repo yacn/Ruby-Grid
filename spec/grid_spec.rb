@@ -23,7 +23,7 @@ module RubyGrid
       end
     end
 
-    describe '#is_valid?' do
+    describe '#is_valid?(x, y)' do
       it 'returns false when x is not a number' do
         @test_grid.is_valid?('a', 3).must_equal false
       end
@@ -142,8 +142,19 @@ module RubyGrid
       it 'raises NameError for unknown vectors/constants' do
         assert_raises(NameError) { @test_grid.get_vector(ABC) }
       end
-      it "returns the coordinates for the given vector" do
-        @test_grid.get_vector(RubyGrid::TOP).must_equal [-1, 0]    
+      it 'returns the coordinates for the given vector' do
+        @test_grid.get_vector(RubyGrid::TOP_LEFT).must_equal [-1, -1]    
+        @test_grid.get_vector(RubyGrid::TOP).must_equal [-1, 0]
+        @test_grid.get_vector(RubyGrid::TOP_RIGHT).must_equal [-1, 1]
+        @test_grid.get_vector(RubyGrid::LEFT).must_equal [0, -1]
+        @test_grid.get_vector(RubyGrid::CENTER).must_equal [0, 0]
+        @test_grid.get_vector(RubyGrid::RIGHT).must_equal [0, 1]
+        @test_grid.get_vector(RubyGrid::BOTTOM_LEFT).must_equal [1, -1]
+        @test_grid.get_vector(RubyGrid::BOTTOM).must_equal [1, 0]
+        @test_grid.get_vector(RubyGrid::BOTTOM_RIGHT).must_equal [1, 1]
+      end
+      it 'returns [nil,nil] if the given vector does not exist' do
+        @test_grid.get_vector(RubyGrid::VERSION).must_equal [nil, nil]
       end
     end
     
