@@ -1,8 +1,7 @@
 require 'coveralls'
 Coveralls.wear!
 
-require 'minitest/spec'
-require 'minitest/autorun'
+require 'minitest'
 begin
   require 'minitest/pride' # colorful output
 rescue LoadError
