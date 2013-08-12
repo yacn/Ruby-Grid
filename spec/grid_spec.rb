@@ -23,6 +23,24 @@ module RubyGrid
       end
     end
 
+    describe '#sizex' do
+      it 'returns the cell width of the grid' do
+        @default_test_grid.sizex.must_equal 4
+        @test_grid.sizex.must_equal 4
+        g = Grid.new(8,8,'a')
+        g.sizex.must_equal 8
+      end
+    end
+
+    describe '#sizey' do
+      it 'returns the cell height of the grid' do
+        @default_test_grid.sizey.must_equal 4
+        @test_grid.sizey.must_equal 4
+        g = Grid.new(8,7,'b')
+        g.sizey.must_equal 7
+      end
+    end
+
     describe '#is_valid?(x, y)' do
       it 'returns false when x is not a number' do
         @test_grid.is_valid?('a', 3).must_equal false

@@ -27,6 +27,10 @@ module RubyGrid
     end
 
   public
+
+    def sizex; @size_x; end
+    def sizey; @size_y; end
+    def grid; @grid; end
     
     # This checks to see if a given x,y pair are within 
     # the boundaries of the grid.
