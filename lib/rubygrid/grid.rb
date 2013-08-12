@@ -37,6 +37,13 @@ module RubyGrid
       return ((x >= 0 and x < @size_x) and (y >= 0 and y < @size_y))
     end
 
+    # Returns the center coordinates of the grid
+    def center
+      x = (@size_x - 1)/2
+      y = (@size_y - 1)/2
+      return x,y
+    end
+
     # Get the data in a given x,y cell.
     # Returns nil if the cell is not valid.
     def get_cell(x, y)

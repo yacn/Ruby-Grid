@@ -262,5 +262,15 @@ module RubyGrid
       end
     end
 
+    describe '#center' do
+      it 'returns an Array containing the center coordinates' do
+        g = Grid.new(5,5,' ')
+        g.center.must_equal [2,2]
+      end
+      it 'rounds down when sizes are even' do
+        @test_grid.center.must_equal [1,1]
+      end
+    end
+
   end
 end
