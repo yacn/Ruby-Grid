@@ -14,12 +14,12 @@ module RubyGrid
     describe 'default values' do
       it 'creates a 4x4 grid of nil values' do
         grid = Array.new(4, Array.new(4, nil))
-        @default_test_grid.get_grid.must_equal grid
+        @default_test_grid.grid.must_equal grid
       end
 
       it 'has a default x and y values as 4' do
-        @default_test_grid.get_x.must_equal 4
-        @default_test_grid.get_y.must_equal 4
+        @default_test_grid.sizex.must_equal 4
+        @default_test_grid.sizey.must_equal 4
       end
     end
 
@@ -95,7 +95,7 @@ module RubyGrid
         @test_grid.set_cell(2,0, 'c')
         g = Array.new(4, Array.new(4, 'a'))
         @test_grid.reset_all
-        @test_grid.get_grid.must_equal g
+        @test_grid.grid.must_equal g
       end
     end
 
@@ -201,19 +201,19 @@ module RubyGrid
       end
       it 'resizes the grid to be smaller' do
         new_grid = Grid.new(5,5,'a')
-        new_grid.get_grid.length.must_equal 5
+        new_grid.grid.length.must_equal 5
         new_grid.resize(4,4)
-        new_grid.get_grid.length.must_equal 4
-        new_grid.get_grid.must_equal @test_grid.get_grid
+        new_grid.grid.length.must_equal 4
+        new_grid.grid.must_equal @test_grid.grid
       end
       it 'resizes the grid to be larger, filling in the default value for 
           new cells' do
         new_grid = Grid.new(3,3,'a')
-        new_grid.get_grid.length.must_equal 3
+        new_grid.grid.length.must_equal 3
         new_grid.set_cell(0,0,'b')
         new_grid.set_cell(2,2,'b')
         new_grid.resize(4,4)
-        new_grid.get_grid.length.must_equal 4
+        new_grid.grid.length.must_equal 4
         new_grid.get_cell(0,0).must_equal 'b'
         new_grid.get_cell(2,2).must_equal 'b'
         new_grid.get_cell(3,3).must_equal 'a'

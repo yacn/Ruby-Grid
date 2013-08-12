@@ -10,17 +10,17 @@ describe RubyGrid do
       b = RubyGrid::Grid.new(3,3,'a')
       c = Array.new(3, Array.new(3, 'a'))
 
-      a.get_grid.must_equal b.get_grid
-      a.get_grid.must_equal c
-      b.get_grid.must_equal c
+      a.grid.must_equal b.grid
+      a.grid.must_equal c
+      b.grid.must_equal c
 
-      a.get_x.must_equal b.get_x
-      a.get_x.must_equal c[0].length
-      b.get_x.must_equal c[0].length
+      a.sizex.must_equal b.sizex
+      a.sizex.must_equal c[0].length
+      b.sizex.must_equal c[0].length
 
-      a.get_y.must_equal b.get_y
-      a.get_y.must_equal c.length
-      b.get_y.must_equal c.length
+      a.sizey.must_equal b.sizey
+      a.sizey.must_equal c.length
+      b.sizey.must_equal c.length
     end
   end
 
