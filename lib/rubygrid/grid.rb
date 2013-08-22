@@ -1,10 +1,11 @@
 module RubyGrid
   class Grid
-    # Grid constructor.
-    # +sizex+ and +sizey+::
-    #   These set the desired size of the grid, 4 by default.
-    # +def_value+::
-    #   The default data to store in a cell by default.
+    # Grid constructor
+    #
+    # @param sizex [Fixnum] (positive) number of rows in the Grid, 4 by default.
+    # @param sizey [Fixnum] (positive) number of columns in the Grid, 4 by default.
+    # @param def_value [Object] default data each Cell is filled with.
+    # @return [Grid] newly created `sizex` by `sizey` Grid.
     def initialize(sizex=4, sizey=4, def_value=nil)
       @grid = []
       
@@ -27,13 +28,23 @@ module RubyGrid
     end
 
   public
-
+  
+    # @!attribute [r] sizex
+    #   @return [Fixnum] number of rows in the Grid.
     def sizex; @size_x; end
+    # @!attribute [r] sizey
+    #   @return [Fixnum] number of columns in the Grid.
     def sizey; @size_y; end
+    # @!attribute [r] grid
+    #   @return [Array] `Array` representation of the Grid.
     def grid; @grid; end
     
     # This checks to see if a given x,y pair are within 
     # the boundaries of the grid.
+    #
+    # @param x [Fixnum] x coordinate to validate
+    # @param y [Fixnum] y coordinate to validate
+    # @return [Boolean] are the coordinates valid?
     def is_valid?(x, y)
       unless (is_number?(x) and is_number?(y))
         return false
@@ -50,6 +61,10 @@ module RubyGrid
 
     # Get the data in a given x,y cell.
     # Returns nil if the cell is not valid.
+    #
+    # @param x [Fixnum] x coordinate of Cell.
+    # @param y [Fixnum] y coordinate of Cell.
+    # @return [Object] data from Cell at given coordinates.
     def get_cell(x, y)
       return @grid[x][y] if is_valid?(x,y)
     end
@@ -57,6 +72,13 @@ module RubyGrid
     # This method will return a set of cell data in a table.
     # The 'cells' argument should be an array of x,y pairs of
     # the cells being requested.
+    #
+    # @param cells [Array<Array<Fixnum>>] array of x,y coordinates of the cells
+    # @return [Array<Object>]
+    #
+    # If given a block {|cell_data| ... }
+    # @yield [cell_data] Yields data from the current cell in the given list.
+    # @return [nil] if a block is given.
     def get_cells(cells) # :yields: cell_data
       data = []
 
@@ -76,11 +98,18 @@ module RubyGrid
     end
 
     # Sets a given x,y cell to the data object
+    #
+    # @param x [Fixnum] x coordinate of cell
+    # @param y [Fixnum] y coordinate of cell
+    # @param obj [Object] data to place in the cell.
     def set_cell(x,y, obj)
       @grid[x][y] = obj if is_valid?(x,y)
     end
     
     # Resets a given x,y cell to the grid default value
+    #
+    # @param x [Fixnum] x coordinate of cell
+    # @param y [Fixnum] y coordinate of cell
     def reset_cell(x,y)
       @grid[x][y] = @def_value if is_valid?(x,y)
     end
@@ -95,18 +124,15 @@ module RubyGrid
     end
 
     # This method is used to populate multiple cells at once.
-    # +data+::
-    #   This argument must be an Array, with each element 
-    #   consisting of three values: x, y, and the data to 
-    #   set the cell to.
-    #
     # Example:
-    #
     #   d = [[4, 4, "X"], [4, 5, "O"], [5, 4, "O"], [5, 5, "X"]]
     #   grid.populate(d)
     #
     # If the object to be populated is nil, it is replaced with
     # the default value.
+    #
+    # @param data [Array<Array<(Fixnum, Fixnum, Object)>>] list of cells to 
+    #   populate the Grid with.
     def populate(data)
       return unless data.respond_to?(:collect)
 
@@ -119,13 +145,16 @@ module RubyGrid
       return
     end
 
-    # This method returns the entire grid's contents in a 
-    # flat array suitable for feeding to #populate above.
-    # Useful for recreating a grid layout.
-    # If the +no_default+ argument is non-false, then the 
-    # returned data Array only contains elements who's 
-    # cells are not the default value.
-    # Returns +nil+ if a block is given.
+    # This method returns the entire grid's contents in a flat array suitable
+    # for feeding to #populate above. Useful for recreating a grid layout.
+    #
+    # If the +no_default+ argument is non-false, then the returned data Array
+    # only contains elements who's cells are not the default value.
+    # 
+    # @param no_default [true,false] include default values in the results?
+    # @returns [Array<Array<(Fixnum, Fixnum, Object)>>] flat list of cells.
+    # @yield [x, y, cell_data] Yields the x,y coordinates and data of each cell.
+    # @returns [nil] if block is given
     def get_contents(no_default=false) # :yields: x, y, cell_data
       data = []
       cell_obj = nil
@@ -148,8 +177,12 @@ module RubyGrid
     end
 
     # Convienence method to return an x,y vector pair from the
-    # GRID_* vector constants. Or nil if there is no such 
+    # RubyGrid vector constants. Or nil if there is no such 
     # constant.
+    #
+    # @param vector [Object] constant of the vector to retrieve.
+    # @return [Array<Fixnum>] coordinates of the vector
+    # @return [Array<nil>] if constant is not valid
     def get_vector(vector)
       case vector
         when TOP_LEFT     then return -1, -1
@@ -167,6 +200,11 @@ module RubyGrid
     end
 
     # Get a cell's neighbor in a given vector.
+    #
+    # @param x [Fixnum] x coordinate of cell.
+    # @param y [Fixnum] y coordinate of cell.
+    # @param vector [Object] vector constant to use
+    # @return [Object] contents of the given cell's neighbor in given direction
     def get_neighbor(x,y, vector)
       vx, vy = get_vector(vector)
 
@@ -177,15 +215,22 @@ module RubyGrid
       end
     end
 
-    # Will return an Array of 8 elements, with each element
-    # representing one of the 8 neighbors for the given 
-    # x,y cell. Each element of the returned Array will consist
-    # of the x,y cell pair, plus the data stored there, suitable
-    # for use of the populate method. If the neighbor cell is
-    # outside the grid, then [nil, nil, OUTSIDE] is used
+    # Will return an Array of 8 elements, with each element representing one of
+    # the 8 neighbors for the given x,y cell. Each element of the returned Array
+    # will consist of the x,y cell pair, plus the data stored there, suitable
+    # for use of the populate method. 
+    #
+    # If the neighbor cell is outside the grid, then [nil, nil, OUTSIDE] is used
     # for the value.
-    # If the given x,y values are not sane, an empty Array
-    # is returned instead.
+    # If the given x,y values are not sane, an empty Array is returned instead.
+    #
+    # @param x [Fixnum] x coordinate of cell.
+    # @param y [Fixnum] y coordinate of cell.
+    # @return [Array<Array<(Fixnum, Fixnum, Object)>>] list of given cell's 
+    #   neighbors.
+    # @yield [x, y, cell_data] Yields x,y coordinates and contents of given 
+    #   cell's neighbors.
+    # @return [nil] if block given
     def get_neighbors(x,y) # :yields: x, y, cell_data
       data = []
       
