@@ -1,7 +1,7 @@
 RubyGrid
 ========
 
-[![Gem Version](https://badge.fury.io/rb/RubyGrid.png)](http://badge.fury.io/rb/RubyGrid)[![Build Status](https://travis-ci.org/yacn/Ruby-Grid.png)](https://travis-ci.org/yacn/Ruby-Grid)[![Coverage Status](https://coveralls.io/repos/yacn/Ruby-Grid/badge.png)](https://coveralls.io/r/yacn/Ruby-Grid)[![Code Climate](https://codeclimate.com/github/yacn/Ruby-Grid.png)](https://codeclimate.com/github/yacn/Ruby-Grid)
+[![Gem Version](https://badge.fury.io/rb/RubyGrid.png)](http://badge.fury.io/rb/RubyGrid)[![Build Status](https://travis-ci.org/yacn/RubyGrid.png)](https://travis-ci.org/yacn/Ruby-Grid)[![Coverage Status](https://coveralls.io/repos/yacn/Ruby-Grid/badge.png)](https://coveralls.io/r/yacn/Ruby-Grid)[![Code Climate](https://codeclimate.com/github/yacn/Ruby-Grid.png)](https://codeclimate.com/github/yacn/Ruby-Grid)
 
 Description
 -----------
